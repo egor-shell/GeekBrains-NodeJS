@@ -4,8 +4,11 @@
   "description": "Репозиторий созданный для сдачи домашних заданий по курсу Node.js от портала Geekbrains.",
   "main": "hello-npm.js",
   "dependencies": {
+    "axios": "^0.21.1",
     "beepbeep": "^1.3.0",
-    "chalk": "^4.1.0"
+    "chalk": "^4.1.0",
+    "cheerio": "^1.0.0-rc.5",
+    "request": "^2.88.2"
   },
   "devDependencies": {},
   "scripts": {
