@@ -8,11 +8,11 @@
     "beepbeep": "^1.3.0",
     "chalk": "^4.1.0",
     "cheerio": "^1.0.0-rc.5",
+    "express": "^4.17.1",
     "request": "^2.88.2"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "npx nodemon index.js"
   },
   "repository": {
     "type": "git",
