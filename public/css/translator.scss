@@ -33,6 +33,17 @@
     margin: 0;
     display: flex;
     justify-content: center;
+
+    &-select {
+        background: none;
+        border: none;
+        cursor: pointer;
+        height: 100%;
+
+        &:focus {
+            outline: none;
+        }
+    }
 }
 .lang-header {
     color: whitesmoke;

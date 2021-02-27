@@ -18,21 +18,28 @@ app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views')
 
 app.get('/', (req, res) => {
-  console.log('Cookies: ', req.cookies)
+  res.cookie()
   res.redirect('/translate.html')
 })
 
 app.post('/translate', (req, res) => {
   console.log(req.cookies)
   const body = req.body
+
+  res
+  .cookie('sourceLanguageCode', body.sourceLanguageCode)
+  .cookie('targetLanguageCode', body.targetLanguageCode)
+  .cookie('questions', body.text)
+
+  console.log(req.cookies.sourceLanguageCode)
   yandexTranslate({
     texts: [body.text],
     sourceLanguageCode: body.sourceLanguageCode,
     targetLanguageCode: body.targetLanguageCode
   }).then((result) => {
     res.render('translate', { 
-      answer: result.data.translations[0].text,
-      questions: body.text
+      questions: body.text,
+      answer: result.data.translations[0].text
     })
   })
 })

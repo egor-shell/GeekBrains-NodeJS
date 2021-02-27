@@ -49,6 +49,17 @@
           justify-content: center;
 }
 
+.switch-select {
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: 100%;
+}
+
+.switch-select:focus {
+  outline: none;
+}
+
 .lang-header {
   color: whitesmoke;
 }

@@ -14,14 +14,14 @@
                 <div class="switch-translate">
                     <div class="switch first-lang">
                         <select name="sourceLanguageCode" id="left-lang" class="switch-select">
-                            <option value="ru" selected>Русский</option>
-                            <option value="en">Английский</option>
+                            <option id="firstLang" selected value="ru">Русский</option>
+                            <option id="secondLang"value="en">Английский</option>
                         </select>
                     </div>
                     <div class="switch second-lang">
                         <select name="targetLanguageCode" id="right-lang" class="switch-select">
-                            <option value="ru">Русский</option>
-                            <option value="en" selected>Английский</option>
+                            <option id="thirdLang" value="ru">Русский</option>
+                            <option id="fortyLang" selected value="en">Английский</option>
                         </select>
                     </div>
                 </div>
@@ -37,28 +37,5 @@
             </form>
         </div>
     </main>
-
-    <!-- <script>
-        const form = document.querySelector('.translate-form')
-        const textarea = document.querySelector('.questions')
-        const translate = document.querySelector('.answer')
-        function sendRequest (method) {
-            const headers = { "content-Type": "application/json" }
-            return fetch('/translate', {
-                method: method,
-                headers: headers,
-                body: JSON.stringify({ text: textarea.value })
-            }).then(res => {
-                return res.json()
-            })
-        }
-
-        form.addEventListener('submit', e => {
-            e.preventDefault()
-            sendRequest('POST')
-                .then(data => translate.textContent = data)
-                .catch(err => console.log(err))
-        })
-    </script> -->
 </body>
 </html>

@@ -1,4 +1,4 @@
-const IAM_TOKEN = 't1.9euelZqQz8_Ij8vHkImanYudzJHJkO3rnpWazpzPzZnLx46Ojp2NmY2Zzsjl8_dlMhZ--e93VkEP_d3z9yVhE37573dWQQ_9.LrHYxmZVGTZ5mUCH1USoPecqnFbCu282tHVIm9E3uK8Skd5p7dj8SuKS24v3bE3XgK8O1GehFjRaHBvfY_F2Dg'
+const IAM_TOKEN = 't1.9euelZqQz8_Ij8vHkImanYudzJHJkO3rnpWazpzPzZnLx46Ojp2NmY2Zzsjl8_c-BRV--e9HPios_N3z934zEn7570c-Kiz8.eMOqfnRixTwHIHRei-K9-mTQDZDCRftrcyOy00ew-oo9PJIDCg1fPbaiHTyIuaU8Jt0i88wsrti_nd94gciQDg'
 const FOLDER = 'b1gv52skb4fvrna3j95p'
 
 const axios = require('axios');
