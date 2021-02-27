@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translator</title>
+    <link rel="stylesheet" href="./css/translator.css">
+</head>
+<body>
+    <main class="main">
+        <div class="translator">
+            <form class="translate-form" id="trans-form" method="POST" action="/translate">
+                <div class="switch-translate">
+                    <div class="switch first-lang">
+                        <select name="sourceLanguageCode" id="left-lang" class="switch-select">
+                            <option value="ru" selected>Русский</option>
+                            <option value="en">Английский</option>
+                        </select>
+                    </div>
+                    <div class="switch second-lang">
+                        <select name="targetLanguageCode" id="right-lang" class="switch-select">
+                            <option value="ru">Русский</option>
+                            <option value="en" selected>Английский</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="translate">
+                    <div class="translate-form">
+                        <div class="translate__container">
+                            <textarea class="translate__field questions" name="text">{{ questions }}</textarea>
+                            <div class="translate__field answer">{{ answer }}</div>
+                        </div>
+                        <button class="translate__btn" type="submit">Перевести</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
