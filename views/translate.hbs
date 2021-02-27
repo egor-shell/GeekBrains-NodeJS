@@ -28,8 +28,8 @@
                 <div class="translate">
                     <div class="translate-form">
                         <div class="translate__container">
-                            <textarea class="translate__field questions" name="text"></textarea>
-                            <div class="translate__field answer"></div>
+                            <textarea class="translate__field questions" name="text">{{ questions }}</textarea>
+                            <div class="translate__field answer">{{ answer }}</div>
                         </div>
                         <button class="translate__btn" type="submit">Перевести</button>
                     </div>
@@ -37,28 +37,5 @@
             </form>
         </div>
     </main>
-
-    <!-- <script>
-        const form = document.querySelector('.translate-form')
-        const textarea = document.querySelector('.questions')
-        const translate = document.querySelector('.answer')
-        function sendRequest (method) {
-            const headers = { "content-Type": "application/json" }
-            return fetch('/translate', {
-                method: method,
-                headers: headers,
-                body: JSON.stringify({ text: textarea.value })
-            }).then(res => {
-                return res.json()
-            })
-        }
-
-        form.addEventListener('submit', e => {
-            e.preventDefault()
-            sendRequest('POST')
-                .then(data => translate.textContent = data)
-                .catch(err => console.log(err))
-        })
-    </script> -->
 </body>
 </html>

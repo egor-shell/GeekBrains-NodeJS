@@ -1,36 +1,40 @@
+const handlebars = require("handlebars")
+const templating = require('consolidate')
+const cookieParser = require('cookie-parser')
+const yandexTranslate = require('./yandexTranslate')
 const express = require('express')
-const axios = require('axios');
 const app = express()
 const port = 8080
 
 app.use(express.static(__dirname + '/public'));
 app.use(express.json());
+app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }));
 
-const IAM_TOKEN = 't1.9euelZqRi52dnciPnJmUj4vKl5CYkO3rnpWazpzPzZnLx46Ojp2NmY2Zzsjl8_cZLBt--e9fflw6_d3z91laGH75719-XDr9.wEMG-cQVsVST3vASHy31yRR2FB40mov3KxUFvK0WZH8vRjrpWD3bSE3ZT8sXk1P7tRxC5-OpMIc25w0oe8HGCw'
-const FOLDER = 'b1gv52skb4fvrna3j95p'
+templating.requires.handlebars = handlebars
 
-app.post('/', async (req, res) => {
-  const result = []
-  await axios.post("https://translate.api.cloud.yandex.net/translate/v2/translate", {
-  "folder_id": FOLDER,
-  "texts": [req.body['text']],
-  "targetLanguageCode": "en"
-  }, {
-      headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${IAM_TOKEN}`,
-      }
-  })
-  .then(res => {
-      res.data.translations.forEach(item => result.push(item.text));
-  })
-  .catch(err => {
-      console.log('Error: ' + err);
-  })
-  const test = result.join('')
+app.engine('hbs', templating.handlebars)
+app.set('view engine', 'hbs');
+app.set('views', __dirname + '/views')
 
-  res.send(JSON.stringify(test))
+app.get('/', (req, res) => {
+  console.log('Cookies: ', req.cookies)
+  res.redirect('/translate.html')
+})
+
+app.post('/translate', (req, res) => {
+  console.log(req.cookies)
+  const body = req.body
+  yandexTranslate({
+    texts: [body.text],
+    sourceLanguageCode: body.sourceLanguageCode,
+    targetLanguageCode: body.targetLanguageCode
+  }).then((result) => {
+    res.render('translate', { 
+      answer: result.data.translations[0].text,
+      questions: body.text
+    })
+  })
 })
 
 app.listen(port, () => {
