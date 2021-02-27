@@ -1,0 +1,27 @@
+{
+  "name": "geekbrains-nodejs",
+  "version": "1.0.0",
+  "description": "Репозиторий созданный для сдачи домашних заданий по курсу Node.js от портала Geekbrains.",
+  "main": "hello-npm.js",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "beepbeep": "^1.3.0",
+    "chalk": "^4.1.0",
+    "cheerio": "^1.0.0-rc.5",
+    "express": "^4.17.1",
+    "request": "^2.88.2"
+  },
+  "scripts": {
+    "serve": "npx nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/egor-shell/GeekBrains-NodeJS.git"
+  },
+  "author": "Egor Shell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/egor-shell/GeekBrains-NodeJS/issues"
+  },
+  "homepage": "https://github.com/egor-shell/GeekBrains-NodeJS#readme"
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translator</title>
+    <link rel="stylesheet" href="./css/translator.css">
+</head>
+<body>
+    <main class="main">
+        <div class="translator">
+            <div class="switch-translate">
+                <div class="switch first-lang">
+                    <h2 class="lang-header">Русский</h2>
+                </div>
+                <div class="switch second-lang">
+                    <h2 class="lang-header">English</h2>
+                </div>
+            </div>
+            <div class="translate">
+                <form class="translate-form">
+                    <div class="translate__container">
+                        <textarea class="translate__field questions"></textarea>
+                        <div class="translate__field answer"></div>
+                    </div>
+                    <button class="translate__btn" type="submit">Перевести</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const form = document.querySelector('.translate-form')
+        const textarea = document.querySelector('.questions')
+        const translate = document.querySelector('.answer')
+        function sendRequest (method) {
+            const headers = { "content-Type": "application/json" }
+            return fetch('/', {
+                method: method,
+                headers: headers,
+                body: JSON.stringify({ text: textarea.value })
+            }).then(res => {
+                return res.json()
+            })
+        }
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            sendRequest('POST')
+                .then(data => translate.textContent = data)
+                .catch(err => console.log(err))
+        })
+    </script>
+</body>
+</html>
