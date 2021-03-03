@@ -12,6 +12,7 @@
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "handlebars": "^4.7.7",
+    "mysql2": "^2.2.5",
     "request": "^2.88.2"
   },
   "scripts": {

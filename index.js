@@ -1,49 +1,22 @@
-const handlebars = require("handlebars")
-const templating = require('consolidate')
-const cookieParser = require('cookie-parser')
-const yandexTranslate = require('./yandexTranslate')
-const express = require('express')
-const app = express()
-const port = 8080
+const cons = require('consolidate')
+const mysql = require('mysql2')
+const config = require('./config/mysql-cfg')
 
-app.use(express.static(__dirname + '/public'));
-app.use(express.json());
-app.use(cookieParser())
-app.use(express.urlencoded({ extended: true }));
+const pool = mysql.createPool(config.options)
 
-templating.requires.handlebars = handlebars
+pool.getConnection((err, con) => {
+    if (err) {
+        console.log(err)
+    } else {
+        con.query('select * from address limit 10, 10', (err, res) => {
+            if (err) {
+                console.log(err)
+            } else {
+                console.log(res)
+            }
+        })
+        con.release()
 
-app.engine('hbs', templating.handlebars)
-app.set('view engine', 'hbs');
-app.set('views', __dirname + '/views')
-
-app.get('/', (req, res) => {
-  res.cookie()
-  res.redirect('/translate.html')
-})
-
-app.post('/translate', (req, res) => {
-  console.log(req.cookies)
-  const body = req.body
-
-  res
-  .cookie('sourceLanguageCode', body.sourceLanguageCode)
-  .cookie('targetLanguageCode', body.targetLanguageCode)
-  .cookie('questions', body.text)
-
-  console.log(req.cookies.sourceLanguageCode)
-  yandexTranslate({
-    texts: [body.text],
-    sourceLanguageCode: body.sourceLanguageCode,
-    targetLanguageCode: body.targetLanguageCode
-  }).then((result) => {
-    res.render('translate', { 
-      questions: body.text,
-      answer: result.data.translations[0].text
-    })
-  })
-})
-
-app.listen(port, () => {
-  console.log(`Приложение запущено по адресу http://localhost:${port}`)
+        pool.end()
+    }
 })
