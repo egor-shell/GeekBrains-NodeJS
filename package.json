@@ -16,7 +16,7 @@
     "request": "^2.88.2"
   },
   "scripts": {
-    "serve": "npx nodemon index.js"
+    "serve": "npx nodemon server.js"
   },
   "repository": {
     "type": "git",
