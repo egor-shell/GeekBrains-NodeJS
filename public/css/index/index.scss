@@ -1,0 +1,42 @@
+@import "../fonts.css" all;
+
+.index {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+
+    &__header {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        font-size: 48px;
+    }
+
+    &__btn {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 400;
+        font-size: 24px;
+        border: none;
+        border-radius: 25px;
+        padding: 15px;
+        background-color: royalblue;
+        color: whitesmoke;
+        cursor: pointer;
+        text-decoration: none;
+
+        &-login {
+            margin-right: 100px;
+        }
+    }
+
+    &__login {
+        display: flex;
+        justify-content: space-between;
+
+        &-btn {
+            // max-width: 40%;
+            font-size: 16px
+        }
+    }
+}
