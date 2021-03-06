@@ -2,9 +2,13 @@ const { task } = require('../../HomeWork_Example/nodeHW6/controllers')
 const models = require('../models')
 
 exports.todoPage = (req, res, next) => {
-    models.Task.getTasks().then(([rows, fieldData]) => {
-        res.render('todo', { task: rows})
-    })
+    if (!req.session.username) {
+        res.redirect('/auth/login')
+    } else {
+        models.Task.getTasks().then(([rows, fieldData]) => {
+            res.render('todo', { task: rows})
+        })
+    }
 }
 
 exports.createTask = (req, res, next) => {

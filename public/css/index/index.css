@@ -34,4 +34,21 @@
   cursor: pointer;
   text-decoration: none;
 }
+
+.index__btn-login {
+  margin-right: 100px;
+}
+
+.index__login {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.index__login-btn {
+  font-size: 16px;
+}
 /*# sourceMappingURL=index.css.map */
