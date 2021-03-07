@@ -29,11 +29,14 @@ class User {
     }
 
     static async createUser(user) {
+        const login = user.username || user._json.login
+        let password = user.password || user._json.id
+        password = String(password)
+        const email = user.email || user._json.email || 'index@email.com'
         const salt = bcryptjs.genSaltSync(config.bcryptjs.saltRounds)
-        user.password = bcryptjs.hashSync(user.password, salt)
-        console.log(user.password)
+        password = bcryptjs.hashSync(password, salt)
 
-        const newUser = await db.query('INSERT INTO users(username, password, email) VALUES (?, ?, ?)', [user.username, user.password, user.email])
+        const newUser = await db.query('INSERT INTO users(username, password, email) VALUES (?, ?, ?)', [login, password, email])
         return newUser
     }
 

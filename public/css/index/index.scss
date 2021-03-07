@@ -13,6 +13,8 @@
         font-size: 48px;
     }
 
+
+
     &__btn {
         font-family: 'Montserrat', sans-serif;
         font-weight: 400;
@@ -24,6 +26,10 @@
         color: whitesmoke;
         cursor: pointer;
         text-decoration: none;
+
+        &:focus {
+            outline: none;
+        }
 
         &-login {
             margin-right: 100px;

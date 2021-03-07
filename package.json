@@ -16,6 +16,8 @@
     "express-session": "^1.17.1",
     "handlebars": "^4.7.7",
     "mysql2": "^2.2.5",
+    "passport": "^0.4.1",
+    "passport-github2": "^0.1.12",
     "request": "^2.88.2",
     "session-rememberme": "^14.0.1"
   },

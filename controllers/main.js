@@ -1,3 +1,4 @@
 exports.indexPage = (req, res, next) => {
-    res.render('index.hbs', { title: 'Task App', message: 'Hello, World!' })
+    console.log(req.session.username)
+    res.render('index.hbs', { username: req.session.username })
 }

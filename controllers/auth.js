@@ -11,6 +11,7 @@ exports.postLogin = (req, res, next) => {
     const user = models.User.findUserByName(req.body.username).then (([user, fieldData]) => {
         if (user.length > 0) {
             user = user[0]
+            console.log(user)
 
             if (models.User.checkPassword(user, req.body.password)) {
                 if (req.body.save) {
@@ -40,4 +41,18 @@ exports.getSignup = (req, res, next) => {
 exports.postSignup = (req, res, next) => {
     models.User.createUser(req.body)
     res.redirect('/auth/login')
+}
+
+exports.github = (req, res, next) => {
+    console.log(req.user)
+    req.session.username = req.user._json.login
+    console.log(req.session.username)
+    res.cookie('user', req.user._json.login)
+    models.User.createUser(req.user)
+    res.redirect('/')
+}
+
+exports.logout = (req, res, next) => {
+    req.logout();
+    res.redirect('/')
 }

@@ -9,11 +9,19 @@
     <link rel="stylesheet" href="/css/index/index.css" type="text/css">
 </head>
 <body>
+{{#if username}}
+    <div class="index">
+        <p class="index__header">Привет, {{username}}</p>
+{{else}}
     <div class="index">
         <div class="index__login">
+            <a href="/auth/signup/" class="index__btn index__login-btn index__btn-login">ЗАРЕГЕСТРИРОВАТЬСЯ</a>
             <a href="/auth/login/" class="index__btn index__login-btn index__btn-login">ВОЙТИ</a>
-            <a href="/auth/signup/" class="index__btn index__login-btn">ЗАРЕГЕСТРИРОВАТЬСЯ</a>
+            <form action="/auth/login/github" method="get">
+                <button type="submit" class="index__btn index__login-btn">ВОЙТИ С ПОМОЩЬЮ GUTHUB</button>
+            </form>
         </div>
+{{/if}}
         <h2 class="index__header">Выберите действие:</h2>
         <a href="/todo/" class="index__btn">TODO-LIST</a>
     </div> 

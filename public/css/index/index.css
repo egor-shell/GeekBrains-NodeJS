@@ -35,6 +35,10 @@
   text-decoration: none;
 }
 
+.index__btn:focus {
+  outline: none;
+}
+
 .index__btn-login {
   margin-right: 100px;
 }

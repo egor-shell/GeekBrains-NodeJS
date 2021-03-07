@@ -3,6 +3,7 @@ const models = require('../models')
 
 exports.todoPage = (req, res, next) => {
     if (!req.session.username) {
+        console.log(req.session)
         res.redirect('/auth/login')
     } else {
         models.Task.getTasks().then(([rows, fieldData]) => {
