@@ -13,7 +13,7 @@ exports.todoPage = (req, res, next) => {
 }
 
 exports.createTask = (req, res, next) => {
-    models.Task.createTask(req.body).then(([rows, fieldData]) => {
+    models.Task.createTask(req.body).then(([rows]) => {
         res.redirect('/todo/');
     })
 }
