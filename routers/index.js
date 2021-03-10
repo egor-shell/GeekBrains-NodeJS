@@ -9,7 +9,6 @@ const apiRouter = require('./api')
 const router = express.Router();
 
 router.use(todoRouter);
-// router.use('/user', userRouter);
 router.use(apiRouter)
 router.use(authRouter);
 router.use(mainRouter);
