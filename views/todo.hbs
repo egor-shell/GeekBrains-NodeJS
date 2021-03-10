@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO-LIST</title>
+    <link rel="stylesheet" href="/css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="/css/todo/todo.css" type="text/css">
+</head>
+<body>
+<main class="main">
+    <div class="container">
+        <a href="/" class="todo__home">На главную</a>
+{{#each task}}
+<div class="todo">
+    <form action="/todo/{{ ID_Task }}/delete/" method="post" class="todo__form-delete">
+        <button class="todo__form-delete">Удалить</button>
+    </form>
+    <h1 class="todo__name">{{ NAME_Task }}</h1>
+    <form action="/todo/" class="todo__form-end" method="POST">
+        <button class="todo__form-edit">Завершить</button>
+    </form>
+</div>
+{{/each}}
+    <form method="POST" action="/todo/" class="todo__form-add">
+        <input type="text" name="NAME_Task">
+        <button type="submit">Добавить задачу</button>
+    </form>
+    <form method="POST" action="/auth/logout/">
+        <button type="submit">Выйти</button>
+    </form>  
+</div>
+</main>
+</body>
+</html>
