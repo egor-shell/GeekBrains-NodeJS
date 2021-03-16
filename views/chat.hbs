@@ -14,7 +14,9 @@
     </style>
   </head>
   <body>
-      <h3>Чат</h3>
+    <h3>Чат</h3>
+    <h4>Сейчас онлайн</h4>
+    <ul id="online"></ul>
     <ul id="messages"></ul>
     <form action="">
       <input id="m" autocomplete="off" /><button onClick="submitMessage(event)">Send</button>
@@ -24,26 +26,35 @@
         var socket = io();
 
         function submitMessage(e) {
-            console.log(socket)
-            const messageEl = document.getElementById('m');
+            const messageEl = document.getElementById('m')
 
-            e.preventDefault();
-            console.log('chatMessage', messageEl.value);
-            socket.emit('chatMessage', { message: messageEl.value });
-            messageEl.value='';
-            messageEl.focus();
+            e.preventDefault()
+            socket.emit('chatMessage', { message: messageEl.value })
+            messageEl.value=''
+            messageEl.focus()
             return false;
         }
 
         socket.on('chatMessage', function (msg) {
-            const messagesEl = document.getElementById('messages');
+          const messagesEl = document.getElementById('messages')
 
-            const messageEl = document.createElement('li');
-            messageEl.textContent = msg.message;
+          const messageEl = document.createElement('li')
+          messageEl.textContent = msg.message
 
-            messagesEl.appendChild(messageEl);
-        });
+          messagesEl.appendChild(messageEl)
+        })
 
+        socket.on('activeUsers', function (user) {
+          const usersEl = document.getElementById('online')
+
+          if(usersEl.childNodes.length > 0) {
+            usersEl.childNodes[0].remove()
+          }
+          const userEl = document.createElement('li')
+          userEl.textContent = user.users
+
+          usersEl.appendChild(userEl)
+        })
     </script>
   </body>
 </html>

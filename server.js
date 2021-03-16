@@ -30,22 +30,44 @@ app.use(sessionMiddleware)
 io.use((socket, next) => {
   sessionMiddleware(socket.request, {}, next)
 });
-
+const userList = []
 io.on('connection', socket => {
   if (!socket.request.session || !socket.request.session.username) {
     console.log('Unauthorised user connected!')
     socket.disconnect();
     return;
   }
-
-  console.log('Chat user connected:', socket.request.session.username)
+  function onlineUser() {
+    let user = socket.request.session.username
+    let check = (username) => {
+      return username === user
+    }
+    if(userList.some(check)) {
+      return false
+    } else {
+      userList.push(user)
+    }
+  }
+  onlineUser()
+  io.emit('activeUsers', { users: userList})
 
   socket.on('disconnect', () => {
     console.log('Chat user disconnected:', socket.request.session.username)
+    let user = socket.request.session.username
+
+    let check = (username) => {
+      return username === user
+    }
+    if(userList.some(check)) {
+      let i = userList.indexOf(user)
+      userList.splice(i, 1)
+    } else {
+      return false
+    }
   })
 
   socket.on('chatMessage', (data) => {
-    console.log('Chat message from', socket.request.session.username+':', data)
+    console.log('Chat message from', socket.request.session.username +':', data)
     data.message = socket.request.session.username + ': ' + data.message
     io.emit('chatMessage', data)
     // console.log(io.sockets.sockets);
